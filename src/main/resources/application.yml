@@ -1,12 +1,29 @@
 resilience4j.bulkhead:
   instances:
     orderService:
-      maxWaitDuration: 5000
+      maxWaitDuration: 3000
       maxConcurrentCalls: 5
+#resilience4j.thread-pool-bulkhead:
+#  instances:
+#    orderService:
+#      maxThreadPoolSize: 3
+#      coreThreadPoolSize: 3
+#      queueCapacity: 3
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/hh_mailservice
+    username: postgres
+    password: unstoppable_SV2004
+#  jpa:
+#    properties:
+#      hibernate:
+#        show_sql: true
+#        format_sql: true
+#        generate_statistics: true
 
-resilience4j.thread-pool-bulkhead:
-  instances:
-    orderService:
-      maxThreadPoolSize: 1
-      coreThreadPoolSize: 1
-      queueCapacity: 1
+#logging:
+#  level:
+#    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+#    org.springframework.orm.jpa.JpaTransactionManager: TRACE
+#    com.zaxxer.hikari.HikariConfig: DEBUG
+#    com.zaxxer.hikari: TRACE

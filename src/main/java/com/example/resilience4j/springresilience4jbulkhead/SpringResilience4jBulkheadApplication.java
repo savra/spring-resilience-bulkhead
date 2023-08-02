@@ -12,9 +12,6 @@ import java.util.stream.IntStream;
 @SpringBootApplication
 public class SpringResilience4jBulkheadApplication {
 
-
-
-
 	public static void main(String[] args) {
 		SpringApplication.run(SpringResilience4jBulkheadApplication.class, args);
 		int i=1;
