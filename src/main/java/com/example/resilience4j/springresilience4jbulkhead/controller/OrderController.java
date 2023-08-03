@@ -32,20 +32,25 @@ public class OrderController {
 
     @Transactional
     @GetMapping("/order")
-    @Bulkhead(name=ORDER_SERVICE,fallbackMethod = "bulkHeadFallback")
+ //   @Bulkhead(name=ORDER_SERVICE,fallbackMethod = "bulkHeadFallback")
     public ResponseEntity<String> createOrder()
     {
         logger.info(LocalTime.now() + " Call processing start = " + Thread.currentThread().getName());
+        try {
+            Thread.sleep(6000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         //Отправляем запрос в HHsearch report service
-        String response = restTemplate.getForObject("http://localhost:8445/api/v1/report/test", String.class);
+       // String response = restTemplate.getForObject("http://localhost:8445/api/v1/report/test", String.class);
         //   reportRepository.test();
-        logger.info(LocalTime.now() + " Call processing finished = " + Thread.currentThread().getName());
+    //    logger.info(LocalTime.now() + " Call processing finished = " + Thread.currentThread().getName());
         return new ResponseEntity<>("", HttpStatus.OK);
     }
 
-    public ResponseEntity<String> bulkHeadFallback(Exception t)
+  /*  public ResponseEntity<String> bulkHeadFallback(Exception t)
     {
         return new ResponseEntity<String>(" orderService is full and does not permit further calls", HttpStatus.TOO_MANY_REQUESTS);
-    }
+    }*/
 
 }
